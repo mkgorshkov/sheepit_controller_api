@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sheepit HealthCheck</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <h1>Sheepit Process Healthcheck</h1>
+    <div th:if="${no_sheepit != null}">
+        <span th:text="${no_sheepit}"></span>
+    </div>
+    <div th:if="${no_sheepit == null}">
+        <p>Sheepit process with PID <span th:text="${process_pid}"></span> is running with UPTIME <span th:text="${process_uptime}"></span>.</p>
+
+        <h2>Instance Options</h2>
+        <ul>
+            <li><a th:href="${restart_url}">Restart Instance</a></li>
+            <li><a th:href="${kill_url}">Kill Instance</a></li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

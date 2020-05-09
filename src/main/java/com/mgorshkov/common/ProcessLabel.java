@@ -3,7 +3,9 @@ package com.mgorshkov.common;
 public enum ProcessLabel {
     PID("PID"),
     UPTIME("UPTIME"),
-    CMD("CMD");
+    CMD("CMD"),
+    RESTART_URL("RESTART_URL"),
+    KILL_URL("KILL_URL");
 
     private String header;
 
