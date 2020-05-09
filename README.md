@@ -13,6 +13,9 @@ can then be launched as a jar on the server:
 ## API Endpoints
 We only really want to use the `/healthcheck/` endpoint because we can do all of the operations from there.
 
+## How does it work?
+Read my writeup here on [DevopsDebug](https://devopsdebug.com/sheepit-remote-controller)
+
 ### Reference Documentation
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
