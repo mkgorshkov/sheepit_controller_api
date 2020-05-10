@@ -54,21 +54,16 @@ public class InstanceController {
         builder.command("sh", "-c", "kill 9 "+pid);
         try {
             Process process = builder.start();
-            int exitCode = process.waitFor();
-            if(exitCode == 0){
-                sheepitProcess = null;
+            sheepitProcess = null;
 
-                model.addAttribute("status_message", "Successfully killed Sheepit process");
-                model.addAttribute("available_operations", "true");
-                return "instanceoperation";
-            }
+            model.addAttribute("status_message", "Successfully killed Sheepit process");
+            model.addAttribute("available_operations", "true");
+            return "instanceoperation";
         } catch (IOException e) {
             logger.error(e.getMessage());
-        } catch (InterruptedException e) {
-            logger.error(e.getMessage());
+            model.addAttribute("status_message", "Error occurred, could not kill Sheepit process");
         }
 
-        model.addAttribute("status_message", "Error occurred, could not kill Sheepit process");
         return "instanceoperation";
     }
 
@@ -130,12 +125,14 @@ public class InstanceController {
         if(pidLine.length() > 1){
             sheepitProcess = new HashMap<>();
 
-            String[] splitPIDLine = pidLine.split("   ");
-            sheepitProcess.put(ProcessLabel.PID, splitPIDLine[0]);
+            pidLine = pidLine.trim();
+            int index = pidLine.indexOf(" ");
+            sheepitProcess.put(ProcessLabel.PID, pidLine.substring(0,index));
+            pidLine = pidLine.substring(index+1);
 
-            int index = splitPIDLine[1].indexOf(" ");
-            sheepitProcess.put(ProcessLabel.UPTIME, splitPIDLine[1].substring(0,index));
-            sheepitProcess.put(ProcessLabel.CMD, splitPIDLine[1].substring(index));
+            index = pidLine.indexOf(" ");
+            sheepitProcess.put(ProcessLabel.UPTIME, pidLine.substring(0,index));
+            sheepitProcess.put(ProcessLabel.CMD, pidLine.substring(index));
             sheepitProcess.put(ProcessLabel.RESTART_URL, baseURL+"restartInstance/"+sheepitProcess.get(ProcessLabel.PID));
             sheepitProcess.put(ProcessLabel.KILL_URL, baseURL+"killInstance/"+sheepitProcess.get(ProcessLabel.PID));
         }
