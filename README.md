@@ -7,8 +7,9 @@ can then be launched as a jar on the server:
 
 1. Compile the project with `mvn clean package` and it will create a jar in the `/target` directory
 2. Upload the jar to the server in question
+3. Ensure that sheepit is launched with the full path such as `java -jar ~/path/to/sheepit-client-6.1712.0.jar -login [username] -password [password] -ui text`
 3. `java -jar sheepit-controller-api-0.0.1-SNAPSHOT.jar`
-4. Hit the API, usually through `localhost:8080/healthcheck` if you're on the server/tunneled or `IP:8080/healthcheck`
+4. Hit the API, usually through `localhost:8080/healthcheck` if you're on the server/tunneled or `[SOME IP]:8080/healthcheck`
 
 ## API Endpoints
 We only really want to use the `/healthcheck/` endpoint because we can do all of the operations from there.
