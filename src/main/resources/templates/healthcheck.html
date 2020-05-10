@@ -14,7 +14,7 @@
         <span th:text="${no_sheepit}"></span>
     </div>
     <div th:if="${no_sheepit == null}">
-        <p>Sheepit process with PID <span th:text="${process_pid}"></span> is running with UPTIME <span th:text="${process_uptime}"></span>.</p>
+        <p>Sheepit process with PID <span th:text="${process_pid}"></span> is running with (CPU) TIME <span th:text="${process_uptime}"></span>.</p>
 
         <h2>Instance Options</h2>
         <ul>
