@@ -114,7 +114,7 @@ public class InstanceController {
 
         try {
             String line;
-            Process p = Runtime.getRuntime().exec("ps -e -o pid,utime,command");
+            Process p = Runtime.getRuntime().exec("ps -e -o pid,time,command");
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
             while ((line = input.readLine()) != null) {
